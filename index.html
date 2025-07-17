@@ -342,10 +342,7 @@
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
-            overflow-y: auto;
-
-            scrollbar-width: thin;
-            scrollbar-color: #0000 #0000;
+            overflow-y: hidden;
         }
 
         .settings-content::-webkit-scrollbar {
@@ -353,7 +350,7 @@
         }
 
         .settings-item {
-            margin-bottom: 2%;
+            margin-bottom: 6px;
         }
 
         .settings-item input[type="text"],
@@ -387,7 +384,8 @@
             font-size: 16px;
             transition: border-color 0.3s;
             resize: none;
-            font-family: "Microsoft YaHei"
+            font-family: "Microsoft YaHei";
+            overflow-y: auto;
        }
         .settings-item a:link{
             color: #0984e3;
@@ -686,7 +684,7 @@
                 <div class="settings-item">
                     <label for="apiUrl">API地址：</label>
                     <input type="text" id="apiUrl" placeholder="https://api.deepseek.com/chat/completions"
-                        value="https://api.deepseek.com/v1/chat/completions">
+                        value="https://api.deepseek.com/chat/completions">
                 </div>
 
                 <div class="settings-item">
@@ -708,7 +706,8 @@
                     </textarea>
                 </div>
                 <div class="settings-item">
-                    <p>要了解关于API密钥的更多信息，请访问<a href="https://platform.deepseek.com" target="_blank" rel="nofollow noopener">platform.deepseek.com</a>。</p>
+                    <p>要获取DeepSeek API密钥，请访问<a href="https://platform.deepseek.com/" target="_blank" rel="nofollow noopener">DeepSeek开放平台</a>。<br>
+                    要了解关于DeepSeek API的更多信息，请参阅<a href="https://api-docs.deepseek.com/" target="_blank" rel="nofollow noopener">DeepSeek API文档</a>。</p>
                 </div>
 
                 
