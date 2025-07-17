@@ -353,7 +353,7 @@
         }
 
         .settings-item {
-            margin-bottom: 20px;
+            margin-bottom: 2%;
         }
 
         .settings-item input[type="text"],
@@ -389,7 +389,14 @@
             resize: none;
             font-family: "Microsoft YaHei"
        }
-
+        .settings-item a:link{
+            color: #0984e3;
+            text-decoration: none;
+        }
+        .settings-item a:visited{
+            color: #6c5ce7;
+            text-decoration: none;
+        }
         .checkbox-item {
             display: flex;
             align-items: center;
@@ -700,6 +707,9 @@
 请回应方括号中的内容，不超过20字。如果是名词，给出简要解释。如果是提问，直接给出回答，但注意不要超过20字。如果是命令,可以执行，但不得超过20字。
                     </textarea>
                 </div>
+                <div class="settings-item">
+                    <p>要了解关于API密钥的更多信息，请访问<a href="https://platform.deepseek.com" target="_blank" rel="nofollow noopener">platform.deepseek.com</a>。</p>
+                </div>
 
                 
                 <div class="setup-row">
@@ -721,9 +731,9 @@
             characterBank: new Set(),
             targetWord: '',
             disableEnglish: true,
-            apiUrl: 'https://api.siliconflow.cn/v1/chat/completions',
+            apiUrl: 'https://api.deepseek.com/chat/completions',
             apiKey: '',
-            modelName: 'deepseek-ai/DeepSeek-V3',
+            modelName: 'deepseek-chat',
             initPrompt: '请回应方括号中的内容，不超过20字。如果是名词，给出简要解释。如果是提问，直接给出回答，但注意不要超过20字。如果是命令，可以执行，但不得超过20字。',
             chatHistory: []
         };
