@@ -638,7 +638,6 @@
                     <h3>
                         可用字库 (<span id="charCount">0</span>个字符)
                         <button class="character-bank-btn" onclick="copyBank()">复制字库</button>
-                        <button class="character-bank-btn" onclick="pasteBank()">粘贴字库</button>
                     </h3>
                     <div class="character-grid" id="characterGrid"></div>
                 </div>
@@ -1140,23 +1139,7 @@
             });
         }
 
-        function pasteBank() {
-            const inBank = navigator.clipboard.readText().then(text => {
-                const chars = new Set(text.trim().split(''));
-                gameState.characterBank = new Set();
-                for (let char of chars) {
-                    if (gameState.disableEnglish && !isChinese(char)) {
-                        continue;
-                    }
-                    gameState.characterBank.add(char);
-                }
-                updateCharacterGrid();
-                showToast('字库已粘贴', '#2ecc71');
-            }).catch(err => {
-                showToast('粘贴失败: ' + err, '#e74c3c');
-            });
-        }
-
+        
         function showToast(str, color) {
             const x = document.getElementById("toast");
             x.className = "show";
