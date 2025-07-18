@@ -713,6 +713,7 @@
                 
                 <div class="setup-row">
                     <button class="btn" onclick="saveSettings()">保存设置</button>
+                    <button class="btn" onclick="resetSettings()">重置设置</button>
                     <button class="btn btn-secondary" onclick="closeSettings()">取消</button>
                 </div>
             </div>
@@ -1081,6 +1082,11 @@
 
         // 关闭设置
         function closeSettings() {
+            document.getElementById('disableEnglish').checked = gameState.disableEnglish;
+            document.getElementById('apiUrl').value = gameState.apiUrl;
+            document.getElementById('apiKey').value = gameState.apiKey;
+            document.getElementById('modelName').value = gameState.modelName;
+            document.getElementById('initPrompt').value = gameState.initPrompt;
             document.getElementById('settingsModal').classList.remove('active');
         }
 
@@ -1104,7 +1110,35 @@
             closeSettings();
             showToast('设置已保存', '#2ecc71');
         }
+        function resetSettings(){
+            if(!confirm('重置设置将清空已保存的API密钥和其他设置，是否继续？')) {
+                return;
+            }
+            // 重置到默认设置
+            gameState.disableEnglish = true;
+            gameState.apiUrl = 'https://api.deepseek.com/chat/completions';
+            gameState.apiKey = '';
+            gameState.modelName = 'deepseek-chat';
+            gameState.initPrompt = '请回应方括号中的内容，不超过20字。如果是名词，给出简要解释，不要超过20字。如果是提问，直接给出回答，但注意不要超过20字。如果是命令，可以执行，但不得超过20字。对于其他情况，直接回应方括号中的内容，但不得超过20字。';
 
+            // 更新界面
+            document.getElementById('disableEnglish').checked = gameState.disableEnglish;
+            document.getElementById('apiUrl').value = gameState.apiUrl;
+            document.getElementById('apiKey').value = gameState.apiKey;
+            document.getElementById('modelName').value = gameState.modelName;
+            document.getElementById('initPrompt').value = gameState.initPrompt;
+
+            // 保存到localStorage
+            localStorage.setItem('gameSettings', JSON.stringify({
+                disableEnglish: gameState.disableEnglish,
+                apiUrl: gameState.apiUrl,
+                apiKey: gameState.apiKey,
+                modelName: gameState.modelName,
+                initPrompt: gameState.initPrompt
+            }));
+
+            showToast('设置已重置', '#2ecc71');
+        }
         // 加载设置
         function loadSettings() {
             const saved = localStorage.getItem('gameSettings');
